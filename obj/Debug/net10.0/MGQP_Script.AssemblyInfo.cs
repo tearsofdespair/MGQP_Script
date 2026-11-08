@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MGQP_Script")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1438ca3a1f0b3d738b6731a718b56700906c0b1c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d698b0fd0bfb1b8235a28bf181ffe84f5b10dbec")]
 [assembly: System.Reflection.AssemblyProductAttribute("MGQP_Script")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MGQP_Script")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

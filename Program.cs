@@ -12,7 +12,7 @@ class Program
     {
         ImageManager imageManager =
             new ImageManager();
-
-        Console.WriteLine(imageManager.IsLeftBattlePanel());
+        
+        Console.WriteLine(imageManager.IsRightBattlePanel());
     }
 }

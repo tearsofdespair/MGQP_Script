@@ -15,6 +15,7 @@ public class ImageManager
 {
     private readonly string windowTitle;
     private readonly string left_Battle_Panel;
+    private readonly string right_Battle_Panel;
 
     private static readonly IntPtr DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 =
         new IntPtr(-4);
@@ -25,6 +26,7 @@ public class ImageManager
     {
         windowTitle = "Квест Монстродев: Парадокс";
         left_Battle_Panel = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\Battle_Left_Panel.png";
+        right_Battle_Panel = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\Right_Battle_Panel.png";
     }
 
     static ImageManager()
@@ -220,5 +222,17 @@ public class ImageManager
         }
 
         return CheckImage(left_Battle_Panel, screenshot);
+    }
+
+    public bool IsRightBattlePanel()
+    {
+        using Mat? screenshot = GetImage();
+
+        if (screenshot is null)
+        {
+            return false;
+        }
+
+        return CheckImage(right_Battle_Panel, screenshot);
     }
 }
