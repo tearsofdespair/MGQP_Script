@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "Ulvz5U0A4L4=",
+  "dgSpecHash": "yIwJo7fEuyQ=",
   "success": true,
   "projectFilePath": "D:\\myprogs\\C#\\MGQP_Script\\MGQP_Script\\MGQP_Script.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\meali\\.nuget\\packages\\microsoft.win32.systemevents\\10.0.9\\microsoft.win32.systemevents.10.0.9.nupkg.sha512",
+    "C:\\Users\\meali\\.nuget\\packages\\opencvsharp4\\4.13.0.20261107\\opencvsharp4.4.13.0.20261107.nupkg.sha512",
+    "C:\\Users\\meali\\.nuget\\packages\\opencvsharp4.extensions\\4.13.0.20261107\\opencvsharp4.extensions.4.13.0.20261107.nupkg.sha512",
+    "C:\\Users\\meali\\.nuget\\packages\\opencvsharp4.runtime.win\\4.13.0.20261107\\opencvsharp4.runtime.win.4.13.0.20261107.nupkg.sha512",
+    "C:\\Users\\meali\\.nuget\\packages\\system.drawing.common\\10.0.9\\system.drawing.common.10.0.9.nupkg.sha512"
+  ],
   "logs": []
 }
