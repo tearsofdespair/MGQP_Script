@@ -4,15 +4,16 @@ using System.Runtime.InteropServices;
 using MGQP_Script;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
+using WindowsInput.Native;
 using Size = System.Drawing.Size;
+
 
 class Program
 {
     static void Main()
     {
-        ImageManager imageManager =
-            new ImageManager();
-        
-        Console.WriteLine(imageManager.IsRightBattlePanel());
+        FarmManager manager = new FarmManager();
+        Thread.Sleep(1000);
+        manager.FarmEntities(5);
     }
 }

@@ -24,3 +24,4 @@ D:\myprogs\C#\MGQP_Script\MGQP_Script\obj\Debug\net10.0\refint\MGQP_Script.dll
 D:\myprogs\C#\MGQP_Script\MGQP_Script\obj\Debug\net10.0\MGQP_Script.pdb
 D:\myprogs\C#\MGQP_Script\MGQP_Script\obj\Debug\net10.0\MGQP_Script.genruntimeconfig.cache
 D:\myprogs\C#\MGQP_Script\MGQP_Script\obj\Debug\net10.0\ref\MGQP_Script.dll
+D:\myprogs\C#\MGQP_Script\MGQP_Script\bin\Debug\net10.0\WindowsInput.dll

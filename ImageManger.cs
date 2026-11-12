@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 
+
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
 
@@ -16,6 +17,8 @@ public class ImageManager
     private readonly string windowTitle;
     private readonly string left_Battle_Panel;
     private readonly string right_Battle_Panel;
+    private readonly string coliseum_floor;
+    private readonly string black_screen;
 
     private static readonly IntPtr DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 =
         new IntPtr(-4);
@@ -27,6 +30,8 @@ public class ImageManager
         windowTitle = "Квест Монстродев: Парадокс";
         left_Battle_Panel = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\Battle_Left_Panel.png";
         right_Battle_Panel = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\Right_Battle_Panel.png";
+        coliseum_floor = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\coliseum_image.png";
+        black_screen = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\black_screen.png";
     }
 
     static ImageManager()
@@ -133,7 +138,7 @@ public class ImageManager
         return image;
     }
 
-    private static Point? FindImage(Mat screenshot, string templatePath, double threshold = 0.90)
+    private static Point? FindImage(Mat screenshot, string templatePath, double threshold = 0.9)
     {
         using Mat template = Cv2.ImRead(
             templatePath,
@@ -188,7 +193,7 @@ public class ImageManager
         return null;
     }
 
-    public bool CheckImage(string templatePath, Mat screenshot)
+    public bool CheckImage(string templatePath, Mat screenshot, double threshold = 0.9)
     {
         Point? position =
             FindImage(
@@ -198,11 +203,6 @@ public class ImageManager
 
         if (position.HasValue)
         {
-            Console.WriteLine(
-                $"Found: " +
-                $"X={position.Value.X}, " +
-                $"Y={position.Value.Y}"
-            );
             return true;
         }
         else
@@ -234,5 +234,31 @@ public class ImageManager
         }
 
         return CheckImage(right_Battle_Panel, screenshot);
+    }
+
+    public bool IsBlackScreen()
+    {
+        using Mat? screenshot = GetImage();
+
+        if (screenshot is null)
+        {
+            return false;
+        }
+
+        return CheckImage(black_screen, screenshot);
+    }
+    
+    public bool AreImagesSimilar(Mat img1, Mat img2, double threshold = 0.95)
+    {
+        if (img1.Size() != img2.Size() || img1.Type() != img2.Type())
+            return false;
+
+        using var result = new Mat();
+        
+        Cv2.MatchTemplate(img1, img2, result, TemplateMatchModes.CCoeffNormed);
+        
+        Cv2.MinMaxLoc(result, out _, out double similarity);
+
+        return similarity >= threshold;
     }
 }
