@@ -19,6 +19,7 @@ public class ImageManager
     private readonly string right_Battle_Panel;
     private readonly string coliseum_floor;
     private readonly string black_screen;
+    private readonly string bottom_panel;
 
     private static readonly IntPtr DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 =
         new IntPtr(-4);
@@ -32,6 +33,7 @@ public class ImageManager
         right_Battle_Panel = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\Right_Battle_Panel.png";
         coliseum_floor = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\coliseum_image.png";
         black_screen = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\black_screen.png";
+        bottom_panel = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\Bottom_Panel.png";
     }
 
     static ImageManager()
@@ -104,11 +106,6 @@ public class ImageManager
         int height =
             rect.Bottom - rect.Top;
 
-        Console.WriteLine(
-            $"Window: X={rect.Left}, Y={rect.Top}, " +
-            $"Width={width}, Height={height}"
-        );
-
         using Bitmap bitmap = new Bitmap(
             width,
             height,
@@ -130,10 +127,6 @@ public class ImageManager
 
         Mat image =
             BitmapConverter.ToMat(bitmap);
-
-        Console.WriteLine(
-            $"Captured: {image.Width}x{image.Height}"
-        );
 
         return image;
     }
@@ -246,6 +239,18 @@ public class ImageManager
         }
 
         return CheckImage(black_screen, screenshot);
+    }
+
+    public bool isBottomPanel()
+    {
+        using Mat? screenshot = GetImage();
+
+        if (screenshot is null)
+        {
+            return false;
+        }
+
+        return CheckImage(bottom_panel, screenshot, 0.75);
     }
     
     public bool AreImagesSimilar(Mat img1, Mat img2, double threshold = 0.95)

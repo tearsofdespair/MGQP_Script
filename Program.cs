@@ -14,6 +14,7 @@ class Program
     {
         FarmManager manager = new FarmManager();
         Thread.Sleep(1000);
-        manager.FarmEntities(5);
+        manager.FarmEntities(8);
+        
     }
 }

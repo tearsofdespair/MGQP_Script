@@ -85,30 +85,31 @@ public class FarmManager
         _inputManager.KeyDown(VirtualKeyCode.VK_A);
         while (counter < amount)
         {
-            if (_imageManager.IsLeftBattlePanel())
+            if (_imageManager.IsBlackScreen() && !isInFight)
             {
-                isInFight = true;
-                _inputManager.Press(VirtualKeyCode.VK_Z);
-                _inputManager.Press(VirtualKeyCode.VK_Z);
-            }
-            else if (isInFight)
-            {
-                if (_imageManager.AreImagesSimilar(startPicture, _imageManager.GetImage(), 0.95))
+                while (true)
                 {
-                    counter++;
-                    isInFight = false;
+                    if (_imageManager.IsLeftBattlePanel())
+                    {
+                        _inputManager.Press(VirtualKeyCode.VK_Z);
+                        _inputManager.Press(VirtualKeyCode.VK_Z);
+                        isInFight = true;
+                        break;
+                    }
                 }
             }
+            else if (!_imageManager.isBottomPanel() && isInFight)
+            {
+                isInFight = false;
+                counter++;
+            }
 
-            if (!_imageManager.IsBlackScreen())
+            if (!isInFight)
             {
                 _inputManager.Press(VirtualKeyCode.RIGHT);
                 _inputManager.Press(VirtualKeyCode.LEFT);
             }
-            else
-            {
-                Thread.Sleep(1300);
-            }
+
         }
         _inputManager.KeyUp(VirtualKeyCode.VK_A);
         Console.WriteLine($"Killed {amount} entities");
