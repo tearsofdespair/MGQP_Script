@@ -16,6 +16,7 @@ public class FarmManager
 
     public void Coliseum(int level, int runs)
     {
+        Thread.Sleep(2000);
         int counter = 0;
         while (counter < runs)
         {
@@ -79,6 +80,7 @@ public class FarmManager
 
     public void FarmEntities(int amount)
     {
+        Thread.Sleep(2000);
         Mat  startPicture = _imageManager.GetImage();
         int counter = 0;
         bool isInFight = false;

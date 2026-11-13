@@ -12,9 +12,10 @@ class Program
 {
     static void Main()
     {
-        FarmManager manager = new FarmManager();
+        /*FarmManager manager = new FarmManager();
         Thread.Sleep(1000);
-        manager.FarmEntities(8);
-        
+        manager.FarmEntities(8);*/
+        ProgramInterface interf = new ProgramInterface();
+        interf.Run();
     }
 }
