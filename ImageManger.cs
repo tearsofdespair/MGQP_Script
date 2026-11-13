@@ -14,12 +14,7 @@ namespace MGQP_Script;
 
 public class ImageManager
 {
-    private readonly string windowTitle;
-    private readonly string left_Battle_Panel;
-    private readonly string right_Battle_Panel;
-    private readonly string coliseum_floor;
-    private readonly string black_screen;
-    private readonly string bottom_panel;
+    private ImagesDB _imagesDb;
 
     private static readonly IntPtr DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 =
         new IntPtr(-4);
@@ -28,12 +23,7 @@ public class ImageManager
 
     public ImageManager()
     {
-        windowTitle = "Квест Монстродев: Парадокс";
-        left_Battle_Panel = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\Battle_Left_Panel.png";
-        right_Battle_Panel = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\Right_Battle_Panel.png";
-        coliseum_floor = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\coliseum_image.png";
-        black_screen = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\black_screen.png";
-        bottom_panel = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\Bottom_Panel.png";
+        _imagesDb =  new ImagesDB();
     }
 
     static ImageManager()
@@ -75,7 +65,7 @@ public class ImageManager
     {
         IntPtr hwnd = FindWindow(
             null,
-            windowTitle
+            _imagesDb.WindowTitle
         );
 
         if (hwnd == IntPtr.Zero)
@@ -131,7 +121,11 @@ public class ImageManager
         return image;
     }
 
-    private static Point? FindImage(Mat screenshot, string templatePath, double threshold = 0.9)
+    private static Point? FindImage(
+        Mat screenshot,
+        string templatePath,
+        double threshold = 0.9
+    )
     {
         using Mat template = Cv2.ImRead(
             templatePath,
@@ -143,27 +137,56 @@ public class ImageManager
             Console.WriteLine(
                 $"Couldn't load template: {templatePath}"
             );
-
             return null;
         }
 
+        using Mat resizedTemplate = new Mat();
+
+        Mat searchTemplate = template;
+
+        // Scale down if the template is larger than the screenshot.
         if (
             template.Width > screenshot.Width ||
             template.Height > screenshot.Height
         )
         {
-            Console.WriteLine(
-                "Template is larger than screenshot."
+            double scale = Math.Min(
+                (double)screenshot.Width / template.Width,
+                (double)screenshot.Height / template.Height
             );
 
-            return null;
+            int newWidth = Math.Max(
+                1,
+                (int)Math.Round(template.Width * scale)
+            );
+
+            int newHeight = Math.Max(
+                1,
+                (int)Math.Round(template.Height * scale)
+            );
+
+            Cv2.Resize(
+                template,
+                resizedTemplate,
+                new OpenCvSharp.Size(newWidth, newHeight),
+                0,
+                0,
+                InterpolationFlags.Area
+            );
+
+            searchTemplate = resizedTemplate;
+
+            Console.WriteLine(
+                $"Template resized: {template.Width}x{template.Height} " +
+                $"-> {newWidth}x{newHeight} (Scale: {scale:F3})"
+            );
         }
 
         using Mat result = new Mat();
 
         Cv2.MatchTemplate(
             screenshot,
-            template,
+            searchTemplate,
             result,
             TemplateMatchModes.CCoeffNormed
         );
@@ -176,9 +199,7 @@ public class ImageManager
             out Point maxLocation
         );
 
-        Console.WriteLine(
-            $"Confidence: {maxValue:F3}"
-        );
+        Console.WriteLine($"Confidence: {maxValue:F3}");
 
         if (maxValue >= threshold)
             return maxLocation;
@@ -214,19 +235,8 @@ public class ImageManager
             return false;
         }
 
-        return CheckImage(left_Battle_Panel, screenshot);
-    }
-
-    public bool IsRightBattlePanel()
-    {
-        using Mat? screenshot = GetImage();
-
-        if (screenshot is null)
-        {
-            return false;
-        }
-
-        return CheckImage(right_Battle_Panel, screenshot);
+        Console.WriteLine("Left Battle Panel");
+        return CheckImage(_imagesDb.Left_Battle_Panel, screenshot);
     }
 
     public bool IsBlackScreen()
@@ -238,7 +248,8 @@ public class ImageManager
             return false;
         }
 
-        return CheckImage(black_screen, screenshot);
+        Console.WriteLine("Black Screen");
+        return CheckImage(_imagesDb.Black_Screen, screenshot);
     }
 
     public bool isBottomPanel()
@@ -250,7 +261,8 @@ public class ImageManager
             return false;
         }
 
-        return CheckImage(bottom_panel, screenshot, 0.75);
+        Console.WriteLine("Bottom Battle Panel");
+        return CheckImage(_imagesDb.Bottom_Panel, screenshot, 0.75);
     }
     
     public bool AreImagesSimilar(Mat img1, Mat img2, double threshold = 0.95)
