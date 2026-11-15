@@ -8,7 +8,7 @@ public class LanguageLoader
 
     public string[] LoadLanguage(string name)
     {
-        string jsonString = File.ReadAllText(@"D:\myprogs\C#\MGQP_Script\MGQP_Script\Data\languages.json");
+        string jsonString = File.ReadAllText(@"./Data\languages.json");
         
         var allLanguages = JsonSerializer.Deserialize<Dictionary<string, string[]>>(jsonString);
         

@@ -57,18 +57,18 @@ public class ImagesDB
         if (resolution.Value.Width == 1920 && resolution.Value.Height == 1080)
         {
             Console.WriteLine("1920x1080");
-            Left_Battle_Panel = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\1920x1080\Battle_Left_Panel.png";
-            Coliseum_Floor = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\1920x1080\coliseum_image.png";
-            Black_Screen = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\1920x1080\black_screen.png";
-            Bottom_Panel = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\1920x1080\Bottom_Panel.png";
+            Left_Battle_Panel = @"./imgs\1920x1080\Battle_Left_Panel.png";
+            Coliseum_Floor = @"./imgs\1920x1080\coliseum_image.png";
+            Black_Screen = @"./imgs\1920x1080\black_screen.png";
+            Bottom_Panel = @"./imgs\1920x1080\Bottom_Panel.png";
         }
         else if (resolution.Value.Width == 3840 && resolution.Value.Height == 2160)
         {
             Console.WriteLine("2560x1440");
-            Left_Battle_Panel = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\2560x1440\Battle_Left_Panel.png";
-            Coliseum_Floor = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\2560x1440\coliseum_image.png";
-            Black_Screen = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\2560x1440\black_screen.png";
-            Bottom_Panel = @"D:\myprogs\C#\MGQP_Script\MGQP_Script\imgs\2560x1440\Bottom_Panel.png";
+            Left_Battle_Panel = @"./imgs\2560x1440\Battle_Left_Panel.png";
+            Coliseum_Floor = @"./imgs\2560x1440\coliseum_image.png";
+            Black_Screen = @"./imgs\2560x1440\black_screen.png";
+            Bottom_Panel = @"./imgs\2560x1440\Bottom_Panel.png";
         }
     }
 

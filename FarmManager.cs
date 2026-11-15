@@ -18,28 +18,29 @@ public class FarmManager
     {
         Thread.Sleep(2000);
         int counter = 0;
+        _inputManager.KeyDown(VirtualKeyCode.VK_A);
         while (counter < runs)
         {
             Mat startPicture = _imageManager.GetImage();
             _inputManager.Press(VirtualKeyCode.VK_Z);
-            _inputManager.Hold(VirtualKeyCode.VK_A, 600);
+            Thread.Sleep(400);
             _inputManager.Press(VirtualKeyCode.VK_Z);
             Thread.Sleep(200);
             switch (level)
             {
-                case 0:
-                    _inputManager.Press(VirtualKeyCode.VK_Z);
-                    break;
                 case 1:
-                    _inputManager.Press(VirtualKeyCode.DOWN);
                     _inputManager.Press(VirtualKeyCode.VK_Z);
                     break;
                 case 2:
                     _inputManager.Press(VirtualKeyCode.DOWN);
-                    _inputManager.Press(VirtualKeyCode.DOWN);
                     _inputManager.Press(VirtualKeyCode.VK_Z);
                     break;
                 case 3:
+                    _inputManager.Press(VirtualKeyCode.DOWN);
+                    _inputManager.Press(VirtualKeyCode.DOWN);
+                    _inputManager.Press(VirtualKeyCode.VK_Z);
+                    break;
+                case 4:
                     Console.WriteLine("Bugagaga");
                     _inputManager.Press(VirtualKeyCode.DOWN);
                     _inputManager.Press(VirtualKeyCode.DOWN);
@@ -47,7 +48,6 @@ public class FarmManager
                     _inputManager.Press(VirtualKeyCode.VK_Z);
                     break;
             }
-            _inputManager.KeyDown(VirtualKeyCode.VK_A);
             
             bool trigger = false;
             while (!trigger)
@@ -72,9 +72,9 @@ public class FarmManager
                     _inputManager.Press(VirtualKeyCode.VK_Z);
                 }
             }
-            _inputManager.KeyUp(VirtualKeyCode.VK_A);
             counter++;
         }
+        _inputManager.KeyUp(VirtualKeyCode.VK_A);
         Console.WriteLine($"Finished: {runs} runs");
     }
 
