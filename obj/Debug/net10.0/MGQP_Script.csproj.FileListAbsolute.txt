@@ -2,7 +2,6 @@ D:\myprogs\C#\MGQP_Script\MGQP_Script\bin\Debug\net10.0\MGQP_Script.exe
 D:\myprogs\C#\MGQP_Script\MGQP_Script\bin\Debug\net10.0\MGQP_Script.deps.json
 D:\myprogs\C#\MGQP_Script\MGQP_Script\bin\Debug\net10.0\MGQP_Script.runtimeconfig.json
 D:\myprogs\C#\MGQP_Script\MGQP_Script\bin\Debug\net10.0\MGQP_Script.dll
-D:\myprogs\C#\MGQP_Script\MGQP_Script\bin\Debug\net10.0\MGQP_Script.pdb
 D:\myprogs\C#\MGQP_Script\MGQP_Script\bin\Debug\net10.0\Microsoft.Win32.SystemEvents.dll
 D:\myprogs\C#\MGQP_Script\MGQP_Script\bin\Debug\net10.0\OpenCvSharp.dll
 D:\myprogs\C#\MGQP_Script\MGQP_Script\bin\Debug\net10.0\OpenCvSharp.Extensions.dll
@@ -17,11 +16,9 @@ D:\myprogs\C#\MGQP_Script\MGQP_Script\obj\Debug\net10.0\MGQP_Script.GeneratedMSB
 D:\myprogs\C#\MGQP_Script\MGQP_Script\obj\Debug\net10.0\MGQP_Script.AssemblyInfoInputs.cache
 D:\myprogs\C#\MGQP_Script\MGQP_Script\obj\Debug\net10.0\MGQP_Script.AssemblyInfo.cs
 D:\myprogs\C#\MGQP_Script\MGQP_Script\obj\Debug\net10.0\MGQP_Script.csproj.CoreCompileInputs.cache
-D:\myprogs\C#\MGQP_Script\MGQP_Script\obj\Debug\net10.0\MGQP_Script.sourcelink.json
 D:\myprogs\C#\MGQP_Script\MGQP_Script\obj\Debug\net10.0\MGQP_Scr.F0CEA4A9.Up2Date
 D:\myprogs\C#\MGQP_Script\MGQP_Script\obj\Debug\net10.0\MGQP_Script.dll
 D:\myprogs\C#\MGQP_Script\MGQP_Script\obj\Debug\net10.0\refint\MGQP_Script.dll
-D:\myprogs\C#\MGQP_Script\MGQP_Script\obj\Debug\net10.0\MGQP_Script.pdb
 D:\myprogs\C#\MGQP_Script\MGQP_Script\obj\Debug\net10.0\MGQP_Script.genruntimeconfig.cache
 D:\myprogs\C#\MGQP_Script\MGQP_Script\obj\Debug\net10.0\ref\MGQP_Script.dll
 D:\myprogs\C#\MGQP_Script\MGQP_Script\bin\Debug\net10.0\WindowsInput.dll

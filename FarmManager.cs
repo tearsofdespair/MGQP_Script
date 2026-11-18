@@ -72,37 +72,33 @@ public class FarmManager
     public void FarmEntities(int amount)
     {
         Thread.Sleep(2000);
-        Mat  startPicture = _imageManager.GetImage();
         int counter = 0;
         bool isInFight = false;
         _inputManager.KeyDown(VirtualKeyCode.VK_A);
         while (counter < amount)
         {
-            if (_imageManager.IsBlackScreen() && !isInFight)
+            if (_imageManager.IsBlackScreen())
             {
-                while (true)
+                Thread.Sleep(300);
+            }
+            else if (_imageManager.isBottomPanel(0.5))
+            {
+                if (_imageManager.IsLeftBattlePanel())
                 {
-                    if (_imageManager.IsLeftBattlePanel())
-                    {
-                        _inputManager.Press(VirtualKeyCode.VK_Z);
-                        _inputManager.Press(VirtualKeyCode.VK_Z);
-                        isInFight = true;
-                        break;
-                    }
+                    Console.WriteLine("attack");
+                    _inputManager.Press(VirtualKeyCode.VK_Z);
+                    _inputManager.Press(VirtualKeyCode.VK_Z);
+                }
+                else
+                {
+                    Thread.Sleep(300);
                 }
             }
-            else if (!_imageManager.isBottomPanel() && isInFight)
-            {
-                isInFight = false;
-                counter++;
-            }
-
-            if (!isInFight)
+            else
             {
                 _inputManager.Press(VirtualKeyCode.RIGHT);
                 _inputManager.Press(VirtualKeyCode.LEFT);
             }
-
         }
         _inputManager.KeyUp(VirtualKeyCode.VK_A);
         Console.WriteLine($"Killed {amount} entities");
