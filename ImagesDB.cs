@@ -8,7 +8,7 @@ public class ImagesDB
     private const uint MONITOR_DEFAULTTONEAREST = 2;
     public string WindowTitle;
     public readonly string Left_Battle_Panel;
-    public readonly string Coliseum_Floor;
+    public readonly string Coliseum;
     public readonly string Black_Screen;
     public readonly string Bottom_Panel;
     
@@ -58,7 +58,7 @@ public class ImagesDB
         {
             Console.WriteLine("1920x1080");
             Left_Battle_Panel = @"./imgs\1920x1080\Battle_Left_Panel.png";
-            Coliseum_Floor = @"./imgs\1920x1080\coliseum_image.png";
+            Coliseum = @"./imgs\1920x1080\coliseum.png";
             Black_Screen = @"./imgs\1920x1080\black_screen.png";
             Bottom_Panel = @"./imgs\1920x1080\Bottom_Panel.png";
         }
@@ -66,7 +66,7 @@ public class ImagesDB
         {
             Console.WriteLine("2560x1440");
             Left_Battle_Panel = @"./imgs\2560x1440\Battle_Left_Panel.png";
-            Coliseum_Floor = @"./imgs\2560x1440\coliseum_image.png";
+            Coliseum = @"./imgs\2560x1440\coliseum_image.png";
             Black_Screen = @"./imgs\2560x1440\black_screen.png";
             Bottom_Panel = @"./imgs\2560x1440\Bottom_Panel.png";
         }

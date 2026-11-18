@@ -212,7 +212,8 @@ public class ImageManager
         Point? position =
             FindImage(
                 screenshot,
-                templatePath
+                templatePath,
+                threshold
             );
 
         if (position.HasValue)
@@ -252,7 +253,7 @@ public class ImageManager
         return CheckImage(_imagesDb.Black_Screen, screenshot);
     }
 
-    public bool isBottomPanel()
+    public bool isBottomPanel(double threshold = 0.75)
     {
         using Mat? screenshot = GetImage();
 
@@ -260,9 +261,19 @@ public class ImageManager
         {
             return false;
         }
+        
+        return CheckImage(_imagesDb.Bottom_Panel, screenshot, threshold);
+    }
+    public bool isColiseum(double threshold = 0.75)
+    {
+        using Mat? screenshot = GetImage();
 
-        Console.WriteLine("Bottom Battle Panel");
-        return CheckImage(_imagesDb.Bottom_Panel, screenshot, 0.75);
+        if (screenshot is null)
+        {
+            return false;
+        }
+        
+        return CheckImage(_imagesDb.Coliseum, screenshot, threshold);
     }
     
     public bool AreImagesSimilar(Mat img1, Mat img2, double threshold = 0.95)

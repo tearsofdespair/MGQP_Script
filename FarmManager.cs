@@ -21,7 +21,6 @@ public class FarmManager
         _inputManager.KeyDown(VirtualKeyCode.VK_A);
         while (counter < runs)
         {
-            Mat startPicture = _imageManager.GetImage();
             _inputManager.Press(VirtualKeyCode.VK_Z);
             Thread.Sleep(400);
             _inputManager.Press(VirtualKeyCode.VK_Z);
@@ -49,33 +48,25 @@ public class FarmManager
                     break;
             }
             
-            bool trigger = false;
-            while (!trigger)
+            Thread.Sleep(1500);
+            while (true)
             {
-                while (true)
-                {
-                    if (_imageManager.AreImagesSimilar(startPicture, _imageManager.GetImage()))
-                    {
-                        trigger = true;
-                        break;
-                    }
-                    else if (_imageManager.IsLeftBattlePanel())
-                    {
-                        break;
-                    }
-                    Thread.Sleep(300);
-                }
-
-                if (!trigger)
+                if (_imageManager.IsLeftBattlePanel())
                 {
                     _inputManager.Press(VirtualKeyCode.VK_Z);
                     _inputManager.Press(VirtualKeyCode.VK_Z);
                 }
+                else if (_imageManager.isColiseum())
+                {
+                    Thread.Sleep(1000);
+                    counter++;
+                    break;
+                }
+                Thread.Sleep(300);
             }
-            counter++;
+            
         }
         _inputManager.KeyUp(VirtualKeyCode.VK_A);
-        Console.WriteLine($"Finished: {runs} runs");
     }
 
     public void FarmEntities(int amount)
