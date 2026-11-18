@@ -18,4 +18,25 @@
       <Folder Include="imgs\1920x1080\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Data\languages.json" />
+      <EmbeddedResource Include="Data\languages.json" />
+      <None Remove="imgs\1920x1080\Battle_Left_Panel_1920x1080.png" />
+      <EmbeddedResource Include="imgs\1920x1080\Battle_Left_Panel_1920x1080.png" />
+      <None Remove="imgs\1920x1080\Black_Screen_1920x1080.png" />
+      <EmbeddedResource Include="imgs\1920x1080\Black_Screen_1920x1080.png" />
+      <None Remove="imgs\1920x1080\Bottom_Panel_1920x1080.png" />
+      <EmbeddedResource Include="imgs\1920x1080\Bottom_Panel_1920x1080.png" />
+      <None Remove="imgs\1920x1080\Coliseum_Image_1920x1080.png" />
+      <EmbeddedResource Include="imgs\1920x1080\Coliseum_Image_1920x1080.png" />
+      <None Remove="imgs\2560x1440\Battle_Left_Panel_2560x1440.png" />
+      <EmbeddedResource Include="imgs\2560x1440\Battle_Left_Panel_2560x1440.png" />
+      <None Remove="imgs\2560x1440\Black_Screen_2560x1440.png" />
+      <EmbeddedResource Include="imgs\2560x1440\Black_Screen_2560x1440.png" />
+      <None Remove="imgs\2560x1440\Bottom_Panel_2560x1440.png" />
+      <EmbeddedResource Include="imgs\2560x1440\Bottom_Panel_2560x1440.png" />
+      <None Remove="imgs\2560x1440\Coliseum_Image_2560x1440.png" />
+      <EmbeddedResource Include="imgs\2560x1440\Coliseum_Image_2560x1440.png" />
+    </ItemGroup>
+
 </Project>

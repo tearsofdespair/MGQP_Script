@@ -1,5 +1,7 @@
-﻿using System.Drawing;
+﻿using System.Reflection;
 using System.Runtime.InteropServices;
+using OpenCvSharp;
+using Size = System.Drawing.Size;
 
 namespace MGQP_Script;
 
@@ -7,10 +9,10 @@ public class ImagesDB
 {
     private const uint MONITOR_DEFAULTTONEAREST = 2;
     public string WindowTitle;
-    public readonly string Left_Battle_Panel;
-    public readonly string Coliseum;
-    public readonly string Black_Screen;
-    public readonly string Bottom_Panel;
+    public readonly Mat Left_Battle_Panel_Template;
+    public readonly Mat Coliseum_Template;
+    public readonly Mat Black_Screen_Template;
+    public readonly Mat Bottom_Panel_Template;
     
     [DllImport("user32.dll")]
     private static extern IntPtr MonitorFromWindow(
@@ -57,18 +59,18 @@ public class ImagesDB
         if (resolution.Value.Width == 1920 && resolution.Value.Height == 1080)
         {
             Console.WriteLine("1920x1080");
-            Left_Battle_Panel = @"./imgs\1920x1080\Battle_Left_Panel.png";
-            Coliseum = @"./imgs\1920x1080\coliseum.png";
-            Black_Screen = @"./imgs\1920x1080\black_screen.png";
-            Bottom_Panel = @"./imgs\1920x1080\Bottom_Panel.png";
+            Left_Battle_Panel_Template = LoadEmbeddedMat("MGQP_Script.imgs._1920x1080.Battle_Left_Panel_1920x1080.png");
+            Coliseum_Template = LoadEmbeddedMat("MGQP_Script.imgs._1920x1080.Coliseum_Image_1920x1080.png");
+            Black_Screen_Template = LoadEmbeddedMat("MGQP_Script.imgs._1920x1080.Black_Screen_1920x1080.png");
+            Bottom_Panel_Template = LoadEmbeddedMat("MGQP_Script.imgs._1920x1080.Bottom_Panel_1920x1080.png");
         }
         else if (resolution.Value.Width == 3840 && resolution.Value.Height == 2160)
         {
             Console.WriteLine("2560x1440");
-            Left_Battle_Panel = @"./imgs\2560x1440\Battle_Left_Panel.png";
-            Coliseum = @"./imgs\2560x1440\coliseum_image.png";
-            Black_Screen = @"./imgs\2560x1440\black_screen.png";
-            Bottom_Panel = @"./imgs\2560x1440\Bottom_Panel.png";
+            Left_Battle_Panel_Template = LoadEmbeddedMat("MGQP_Script.imgs._2560x1440.Battle_Left_Panel_2560x1440.png");
+            Coliseum_Template = LoadEmbeddedMat("MGQP_Script.imgs._2560x1440.Coliseum_Image_2560x1440.png");
+            Black_Screen_Template = LoadEmbeddedMat("MGQP_Script.imgs._2560x1440.Black_Screen_2560x1440.png");
+            Bottom_Panel_Template = LoadEmbeddedMat("MGQP_Script.imgs._2560x1440.Bottom_Panel_2560x1440.png");
         }
     }
 
@@ -105,6 +107,24 @@ public class ImagesDB
             info.rcMonitor.Bottom - info.rcMonitor.Top;
 
         return new Size(width, height);
+    }
+    
+    public Mat LoadEmbeddedMat(string resourceName, ImreadModes flags = ImreadModes.Color)
+    {
+        // Берем сборку главного запускаемого проекта (MGQP_Script), а не текущую библиотеку
+        var assembly = Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly();
+    
+        using Stream? stream = assembly.GetManifestResourceStream(resourceName);
+
+        if (stream == null)
+        {
+            throw new FileNotFoundException($"Ресурс '{resourceName}' не найден в сборке {assembly.FullName}");
+        }
+
+        using var memoryStream = new MemoryStream();
+        stream.CopyTo(memoryStream);
+    
+        return Cv2.ImDecode(memoryStream.ToArray(), flags);
     }
 
 }

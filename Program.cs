@@ -1,13 +1,11 @@
 ﻿using MGQP_Script;
+using OpenCvSharp;
 
 class Program
 {
     static void Main()
     {
-        /*ProgramInterface interf = new ProgramInterface();
-        interf.Run();*/
-        FarmManager farm = new FarmManager();
-        
-        farm.Coliseum(4, 2);
+        ProgramInterface interf = new ProgramInterface();
+        interf.Run();
     }
 }
